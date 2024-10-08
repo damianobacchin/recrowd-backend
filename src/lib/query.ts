@@ -17,14 +17,3 @@ export function withToDate<T extends PgSelect>(
 ) {
     return qb.where(lte(InvestmentsTable.created_at, to))
 }
-
-export function withAmountGreaterThan<T extends PgSelect>(
-    qb: T,
-    timeframe: TimeFrame
-) {
-    // return the results gouped by the timeframe specified
-    // if the timeframe is not specified, return all results
-
-    
-    return qb
-}
