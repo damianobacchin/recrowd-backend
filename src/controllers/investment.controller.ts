@@ -69,13 +69,11 @@ export const createInvestment: RequestHandler = async (req, res) => {
         throw new Error('Missing required fields')
     }
 
-    const confirmationDate = new Date(confirmed_at)
-
     await db.insert(InvestmentsTable)
         .values({
             amount,
             apr,
-            confirmed_at: confirmationDate
+            confirmed_at: new Date(confirmed_at)
         })
 
     return res.sendStatus(201)
