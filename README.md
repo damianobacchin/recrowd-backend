@@ -8,17 +8,22 @@ In the project folder, run the following command:
 docker compose up --build
 ```
 
-### 2. Build the backend
+### 2. Install the dependencies
+```bash
+npm install
+```
+
+### 3. Build the backend
 ```bash
 npm run build
 ```
 
-### 3. Apply the migrations to the database
+### 4. Apply the migrations to the database
 ```bash
 npm run db:migrate
 ```
 
-### 4. Start the backend
+### 5. Start the backend
 ```bash
 npm start
 ```
