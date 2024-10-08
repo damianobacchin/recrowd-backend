@@ -1,0 +1,333 @@
+{
+	"info": {
+		"_postman_id": "8e92be77-6862-43c2-9a34-95c0851b7e63",
+		"name": "Recrowd APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16487858"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Authorize",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"    const response = pm.response.json()\r",
+									"    pm.environment.set(\"TOKEN\", response.id)\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/auth/authorize",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"auth",
+								"authorize"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Authorize - success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/auth/authorize",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"auth",
+										"authorize"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "45"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2d-4k7ooYri2zda/xSjGmtLYcJ1D3g\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Oct 2024 11:42:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"9f293042-4d05-47ad-b039-347626a90cee\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Investment",
+			"item": [
+				{
+					"name": "Get Investments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{HOST}}/investment/",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"investment",
+								""
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "2024-10-07T07:43:08.491Z",
+									"disabled": true
+								},
+								{
+									"key": "to",
+									"value": "2024-10-07T07:43:08.491Z",
+									"disabled": true
+								},
+								{
+									"key": "timeframe",
+									"value": "m",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Investments - success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{HOST}}/investment/?timeframe=m",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"investment",
+										""
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "2024-10-07T07:43:08.491Z",
+											"disabled": true
+										},
+										{
+											"key": "timeframe",
+											"value": "m"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1070"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"42e-ZtynXqUtwaVd+BaeAphlEqBZlHo\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Oct 2024 11:42:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"stats\": [\n        {\n            \"m\": \"2024-06-01 00:00:00\",\n            \"number\": 3,\n            \"total\": 5250\n        },\n        {\n            \"m\": \"2024-07-01 00:00:00\",\n            \"number\": 1,\n            \"total\": 250\n        },\n        {\n            \"m\": \"2024-10-01 00:00:00\",\n            \"number\": 2,\n            \"total\": 350\n        }\n    ],\n    \"data\": [\n        {\n            \"id\": \"85c4fcfc-ad40-4b06-8526-7b324b91d9ea\",\n            \"amount\": 100,\n            \"apr\": 8,\n            \"created_at\": \"2024-10-08T09:43:08.491Z\",\n            \"confirmed_at\": \"2024-09-30T22:00:00.000Z\"\n        },\n        {\n            \"id\": \"f64a32bd-0a80-4a1c-b7f3-fde28822b58d\",\n            \"amount\": 250,\n            \"apr\": 7,\n            \"created_at\": \"2024-07-08T10:21:53.870Z\",\n            \"confirmed_at\": \"2024-09-30T22:00:00.000Z\"\n        },\n        {\n            \"id\": \"6d2ef3b0-888f-4cc5-aeb2-caccc8e1c465\",\n            \"amount\": 250,\n            \"apr\": 7,\n            \"created_at\": \"2024-10-08T10:23:16.296Z\",\n            \"confirmed_at\": \"2024-10-04T22:00:00.000Z\"\n        },\n        {\n            \"id\": \"f40e30fb-fcad-4395-aa79-391560a66be1\",\n            \"amount\": 2550,\n            \"apr\": 5,\n            \"created_at\": \"2024-06-28T11:04:07.367Z\",\n            \"confirmed_at\": \"2024-10-04T22:00:00.000Z\"\n        },\n        {\n            \"id\": \"567db00f-10a1-460e-8189-a27f636d60d4\",\n            \"amount\": 150,\n            \"apr\": 5,\n            \"created_at\": \"2024-06-16T10:23:28.786Z\",\n            \"confirmed_at\": \"2024-10-04T22:00:00.000Z\"\n        },\n        {\n            \"id\": \"67dc94d4-9db8-4687-929a-ecc4a8069c7c\",\n            \"amount\": 2550,\n            \"apr\": 5,\n            \"created_at\": \"2024-06-24T11:04:35.821Z\",\n            \"confirmed_at\": \"2024-10-04T22:00:00.000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Investement",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": 1780,\r\n    \"apr\": 5.0,\r\n    \"confirmed_at\": \"2024-10-05T00:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/investment/",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"investment",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Investement - success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"amount\": 2550,\r\n    \"apr\": 5.0,\r\n    \"confirmed_at\": \"2024-10-05T00:00:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/investment/",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"investment",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "7"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7-rM9AyJuqT6iOan/xHh+AW+7K/T8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Oct 2024 11:04:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Created"
+						}
+					]
+				}
+			]
+		}
+	]
+}
