@@ -1,15 +1,18 @@
-FROM node:18-alpine AS build
+FROM node:alpine
+
 WORKDIR /app
+
 COPY package*.json ./
+
 RUN npm install
-COPY tsconfig.json ./
-COPY ./src ./src
+
+COPY . .
+
 RUN npm run build
 
-FROM node:18-alpine
-WORKDIR /app
-COPY --from=build /app/package*.json ./
-COPY --from=build /app/dist ./dist
-RUN npm install --production
-EXPOSE 3000
-CMD ["node", "dist/server.js"]
+# Run database migrations
+# RUN npm run db:migrate
+
+EXPOSE 5000
+
+CMD ["npm", "start"]

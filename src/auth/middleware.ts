@@ -38,9 +38,20 @@ export const TokenAuth = (level: AuthLevel): RequestHandler => {
 
         if (auth.length > 0) {
             const userLevel = auth[0].level as AuthLevel
-            if (userLevel === level) {
+            
+            let permission = false
+            if (userLevel === AuthLevel.RW) permission = true
+            if (userLevel === AuthLevel.R) permission = level === AuthLevel.R
+
+            if (permission && !auth[0].used_at) {
                 req.level = level
+
+                await db.update(AuthTable)
+                    .set({ used_at: new Date() })
+                    .where(eq(AuthTable.id, token))
+
                 return next()
+
             } else {
                 return next({ status: 403, message: 'Forbidden' })
             }
